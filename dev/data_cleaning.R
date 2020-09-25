@@ -27,7 +27,8 @@ dt <- dt %>%
 dt <- dt %>% 
   mutate(occurrence_ts = ymd_hms(occurrencedate),
          reported_ts = ymd_hms(reporteddate)) %>% 
-  select(-occurrencedate, -reporteddate)
+  select(-occurrencedate, -reporteddate, -starts_with("report")) %>% 
+  filter(year(occurrence_ts) >= 2016)
 
 # save data as data_clean.rdata
 saveRDS(dt, "~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/autotheft_clean.rdata")
