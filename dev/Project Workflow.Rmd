@@ -1,0 +1,50 @@
+---
+title: "Project Workflow"
+author: "Yang Zhu"
+date: "9/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Role and Responsibility
+
+Wenjie Chen | 
+
+HanYu Qi |
+
+Yang Zhu | 
+
+# Phase 1: Main Tasks
+
++ Search similar studies: crime incidence prediction, time series model on predicting crime, spatial analysis, Imbalance data.
+
++ R package/API: weather data source (GTA area) 
+
++ Data source: 2017-2019 GTA neighbourhood population summary
+
++ Code: Data Joining, preprocessing, exploratory analysis, baseline model
+
+## Week1 action items:
+
+- Wenjie Chen & HanYu Qi: 
+dplyr:: left_join, mutate, filter, select, inner_join, arrange, slice, group_by, summarise, count
+tidyr:: pivot_wider, pivot_longer, fill
+
+1 Paper about crime incidence/autotheft prediction: Introduce the dataset used, summarise the machine learning/statistical method they used, model performance, limitations.
+
+Wenjie Chen: weather data (R package or API)
+HanYu Qi: GTA population change rate (Neighbourhood)
+
+- Yang Zhu:
+
+Technical help on data manipulation process,
+Data source validation
+
+
+
+
+
+
