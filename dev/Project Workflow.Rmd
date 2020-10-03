@@ -11,40 +11,58 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Role and Responsibility
 
-Wenjie Chen | 
+Wenjie Chen \|
 
-HanYu Qi |
+HanYu Qi \|
 
-Yang Zhu | 
+Yang Zhu \|
 
 # Phase 1: Main Tasks
 
-+ Search similar studies: crime incidence prediction, time series model on predicting crime, spatial analysis, Imbalance data.
+-   Search similar studies: crime incidence prediction, time series model on predicting crime, spatial analysis, Imbalance data.
 
-+ R package/API: weather data source (GTA area) 
+-   R package/API: weather data source (GTA area)
 
-+ Data source: 2017-2019 GTA neighbourhood population summary
+-   Data source: 2017-2019 GTA neighbourhood population summary
 
-+ Code: Data Joining, preprocessing, exploratory analysis, baseline model
+-   Code: Data Joining, preprocessing, exploratory analysis, baseline model
 
 ## Week1 action items:
 
-- Wenjie Chen & HanYu Qi: 
-dplyr:: left_join, mutate, filter, select, inner_join, arrange, slice, group_by, summarise, count
-tidyr:: pivot_wider, pivot_longer, fill
+-   Wenjie Chen & HanYu Qi: dplyr:: left\_join, mutate, filter, select, inner\_join, arrange, slice, group\_by, summarise, count tidyr:: pivot\_wider, pivot\_longer, fill
 
 1 Paper about crime incidence/autotheft prediction: Introduce the dataset used, summarise the machine learning/statistical method they used, model performance, limitations.
 
-Wenjie Chen: weather data (R package or API)
-HanYu Qi: GTA population change rate (Neighbourhood)
+Wenjie Chen: weather data (R package or API) HanYu Qi: GTA population change rate (Neighbourhood)
 
-- Yang Zhu:
+-   Yang Zhu:
 
-Technical help on data manipulation process,
-Data source validation
+Technical help on data manipulation process, Data source validation
 
+## Week2 action items:
 
+```{r}
+stations_search(coords = c(43.64421, -79.43536), dist = 20, interval = "day")
+xxx <- unique(dt$Neighbourhood)
+station_id_lst <- c()
+for (i in 1:length(xxx)) {
+  subset_dt <- dt %>% 
+    filter(Neighbourhood == xxx[i]) %>% 
+    sample_n(1) %>% 
+    select(Long, Lat)
+  
+  station_id <- stations_search(coords = subset_dt, dist = 10, interval = "day") %>% 
+    filter(distance == min(distance)) %>% 
+    select(station_id)
+  
+  station_id_lst <- c(station_id_lst, station_id)
+  
+}
+```
+```
 
+-   Wenjie Chen & HanYu Qi: STA130 week3 Problem Set R code
 
+-   HanYu Qi: Mapping Statistics Canada data with the neighborhood in Autotheft data, create a new column called `annual_pop_change_rate`, using `left_join()`. Find a new paper, read and prepare for presentation.
 
-
+-   Wenjie Chen: Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Finish reading paper, prepare for presentation.
