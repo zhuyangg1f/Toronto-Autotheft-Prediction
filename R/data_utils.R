@@ -78,6 +78,8 @@ join_auto_weather <- function(auto_dt, weather_dt) {
     tidyr::fill(weather:wind_spd_flag,.direction = "down") %>% 
     dplyr::select(-station_name, -station_id)
   
+  return(auto_dt_weather)
+  
 }
 
 auto_dt_weather <- join_auto_weather(auto_dt, weather_dt)
