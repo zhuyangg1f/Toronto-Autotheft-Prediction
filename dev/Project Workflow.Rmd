@@ -66,3 +66,25 @@ for (i in 1:length(xxx)) {
 -   HanYu Qi: Mapping Statistics Canada data with the neighborhood in Autotheft data, create a new column called `annual_pop_change_rate`, using `left_join()`. Find a new paper, read and prepare for presentation.
 
 -   Wenjie Chen: Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Finish reading paper, prepare for presentation.
+
+## Week3 action items:
+
+```{r}
+raw <- tibble(Hood_ID = c(1,1,2,3,3,4), 
+              occurance_year = c(2016,2017,2017,2018,2019,2018))
+pop_2016 <- tibble(Hood_ID = c(1,2,3,4),
+                   pop_2016 = c(110,120,130,140),
+                   pop_old_2016 = c(55,34,52,21))
+growth_rate_dt <- tibble(Hood_ID = c(1,2,3,4),
+                         growth_rate = c(0.05,-0.01,-0.1,0.12))
+new <- raw %>% 
+  left_join(pop_2016,by="Hood_ID") %>% 
+  left_join(growth_rate_dt, by ="Hood_ID") %>% 
+  mutate(pop = pop_2016 * (1+growth_rate)^(occurance_year - 2016),
+         pop_old = pop_old_2016 * (1+growth_rate)^(occurance_year - 2016))
+```
+
+-   HanYu Qi: Mapping Statistics Canada data with the neighborhood in Autotheft data, create a new column called `annual_pop_change_rate`, using `left_join()`. Find a new paper, read and prepare for presentation.
+
+-   Wenjie Chen: #Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Left Join weather data by station_id, year, month, day, hour.# look into details of outcome, LFSNBC method and other reference paper. Do presentation on two relavent papers
+
