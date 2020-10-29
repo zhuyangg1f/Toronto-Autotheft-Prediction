@@ -94,3 +94,6 @@ join_auto_neighbor <- function(auto_data, neighbor_data) {
 }
 
 auto_dt_neighbor <- join_auto_neighbor(auto_dt, neighbor_dt)
+write.csv(auto_dt_neighbor,"/Users/mac/Documents/Toronto-Autotheft-Prediction-data_exploration/data/auto_neighbor.csv")
+saveRDS(neighbor_dt, "/Users/mac/Documents/Toronto-Autotheft-Prediction-data_exploration/data/neighbor_dt_raw.rdata")
+saveRDS(auto_dt_neighbor, "/Users/mac/Documents/Toronto-Autotheft-Prediction-data_exploration/data/auto_neighbor_dt.rdata")
