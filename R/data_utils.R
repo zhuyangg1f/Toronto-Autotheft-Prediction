@@ -4,21 +4,35 @@ library(dplyr)
 library(lubridate)
 library(stringr)
 
+
+#' Clean Auto Theft Raw Data
+#' 
+#' Description
+#' 
+#' @param raw_auto_dt A tibble object, states the ontario auto theft raw data
+#' 
+#' @import dplyr
+#' @import lubridate
+#' 
+#' @export
 clean_auto_dt <- function(raw_auto_dt) {
   
   # X, Y, Index_, ObjectId, ucr_code, ucr_ext are not useful remove
   dt <- raw_auto_dt %>% 
     dplyr::select(-c(X, Y, Index_, ObjectId, ucr_code, 
                      ucr_ext, event_unique_id, MCI)) %>% 
+    # remove duplicated row
     dplyr::distinct()
   
   dt <- dt %>% 
-    dplyr:: mutate(occurrence_ts = lubridate::ymd_hms(occurrencedate),
+    dplyr::mutate(occurrence_ts = lubridate::ymd_hms(occurrencedate),
                    reported_ts = lubridate::ymd_hms(reporteddate)) %>% 
     dplyr::select(-occurrencedate, -reporteddate, -dplyr::starts_with("report")) %>% 
     dplyr::filter(lubridate::year(occurrence_ts) >= 2016) %>% 
     dplyr::mutate(occurrencemonth = lubridate::month(occurrence_ts))
   
+  
+  return(dt)
 }
 
 get_station_id <- function(year, lat, long) {
@@ -83,4 +97,3 @@ join_auto_weather <- function(auto_dt, weather_dt) {
 }
 
 auto_dt_weather <- join_auto_weather(auto_dt, weather_dt)
-

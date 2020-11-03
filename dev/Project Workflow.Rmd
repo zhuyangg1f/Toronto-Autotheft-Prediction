@@ -88,3 +88,19 @@ new <- raw %>%
 
 -   Wenjie Chen: #Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Left Join weather data by station_id, year, month, day, hour.# look into details of outcome, LFSNBC method and other reference paper. Do presentation on two relavent papers
 
+- Yang: Writing data cleaning functions for weather data
+
+
+## Week4 action items:
+
+-   HanYu Qi: Joining population to any data set with Neighbourhood and year by using function. Find a new paper for presenting
+
+-   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.(incomplete)
+
+## Week5 action items:
+
+-   HanYu Qi: Make change to population joining function, create PR and send code review request to Yang. EDA: 1. Time serires plot, is there any seasonality and trend (facet by region, investigating the interaction betwee region and occurrence).  2. Investigate the relationship between time of the day and occurrence 3. Investigate the relationship between day of week and occurrence 4. Investigate the relationship between weather(temperature) and occurrence 5.Investigate the relationship between population structure (total population, young ppl ratio) and occurrence (2 weeks)
+
+-   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.
+
+-   Yang: code review for population joining functions, add function documentation and readme file. 
