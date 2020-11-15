@@ -1,0 +1,106 @@
+---
+title: "Project Workflow"
+author: "Yang Zhu"
+date: "9/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Role and Responsibility
+
+Wenjie Chen \|
+
+HanYu Qi \|
+
+Yang Zhu \|
+
+# Phase 1: Main Tasks
+
+-   Search similar studies: crime incidence prediction, time series model on predicting crime, spatial analysis, Imbalance data.
+
+-   R package/API: weather data source (GTA area)
+
+-   Data source: 2017-2019 GTA neighbourhood population summary
+
+-   Code: Data Joining, preprocessing, exploratory analysis, baseline model
+
+## Week1 action items:
+
+-   Wenjie Chen & HanYu Qi: dplyr:: left\_join, mutate, filter, select, inner\_join, arrange, slice, group\_by, summarise, count tidyr:: pivot\_wider, pivot\_longer, fill
+
+1 Paper about crime incidence/autotheft prediction: Introduce the dataset used, summarise the machine learning/statistical method they used, model performance, limitations.
+
+Wenjie Chen: weather data (R package or API) HanYu Qi: GTA population change rate (Neighbourhood)
+
+-   Yang Zhu:
+
+Technical help on data manipulation process, Data source validation
+
+## Week2 action items:
+
+```{r}
+stations_search(coords = c(43.64421, -79.43536), dist = 20, interval = "day")
+xxx <- unique(dt$Neighbourhood)
+station_id_lst <- c()
+for (i in 1:length(xxx)) {
+  subset_dt <- dt %>% 
+    filter(Neighbourhood == xxx[i]) %>% 
+    sample_n(1) %>% 
+    select(Long, Lat)
+  
+  station_id <- stations_search(coords = subset_dt, dist = 10, interval = "day") %>% 
+    filter(distance == min(distance)) %>% 
+    select(station_id)
+  
+  station_id_lst <- c(station_id_lst, station_id)
+  
+}
+```
+```
+
+-   Wenjie Chen & HanYu Qi: STA130 week3 Problem Set R code
+
+-   HanYu Qi: Mapping Statistics Canada data with the neighborhood in Autotheft data, create a new column called `annual_pop_change_rate`, using `left_join()`. Find a new paper, read and prepare for presentation.
+
+-   Wenjie Chen: Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Finish reading paper, prepare for presentation.
+
+## Week3 action items:
+
+```{r}
+raw <- tibble(Hood_ID = c(1,1,2,3,3,4), 
+              occurance_year = c(2016,2017,2017,2018,2019,2018))
+pop_2016 <- tibble(Hood_ID = c(1,2,3,4),
+                   pop_2016 = c(110,120,130,140),
+                   pop_old_2016 = c(55,34,52,21))
+growth_rate_dt <- tibble(Hood_ID = c(1,2,3,4),
+                         growth_rate = c(0.05,-0.01,-0.1,0.12))
+new <- raw %>% 
+  left_join(pop_2016,by="Hood_ID") %>% 
+  left_join(growth_rate_dt, by ="Hood_ID") %>% 
+  mutate(pop = pop_2016 * (1+growth_rate)^(occurance_year - 2016),
+         pop_old = pop_old_2016 * (1+growth_rate)^(occurance_year - 2016))
+```
+
+-   HanYu Qi: Mapping Statistics Canada data with the neighborhood in Autotheft data, create a new column called `annual_pop_change_rate`, using `left_join()`. Find a new paper, read and prepare for presentation.
+
+-   Wenjie Chen: #Mapping Weather data based on coordinate (latitude, longitude). create a new column called `station_id` by using for loop or manual work. Left Join weather data by station_id, year, month, day, hour.# look into details of outcome, LFSNBC method and other reference paper. Do presentation on two relavent papers
+
+- Yang: Writing data cleaning functions for weather data
+
+
+## Week4 action items:
+
+-   HanYu Qi: Joining population to any data set with Neighbourhood and year by using function. Find a new paper for presenting
+
+-   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.(incomplete)
+
+## Week5 action items:
+
+-   HanYu Qi: Make change to population joining function, create PR and send code review request to Yang. EDA: 1. Time serires plot, is there any seasonality and trend (facet by region, investigating the interaction betwee region and occurrence).  2. Investigate the relationship between time of the day and occurrence 3. Investigate the relationship between day of week and occurrence 4. Investigate the relationship between weather(temperature) and occurrence 5.Investigate the relationship between population structure (total population, young ppl ratio) and occurrence (2 weeks)
+
+-   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.
+
+-   Yang: code review for population joining functions, add function documentation and readme file. 
