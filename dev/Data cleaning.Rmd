@@ -17,10 +17,10 @@ library(here)
 ```
 
 ```{r load data}
-setwd(here())
-auto_dt <- readRDS("data/auto_theft_data.rdata")
-raw_neighbor_2016 <- read.csv('data/neighbourhood-profiles-2016-csv.csv',stringsAsFactors = FALSE)
-load("R/data_utils.R")
+# setwd(here())
+auto_dt <- readRDS("~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/auto_theft_data.rdata")
+raw_neighbor_2016 <- read.csv('~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/neighbourhood-profiles-2016-2011.csv',stringsAsFactors = FALSE)
+source("~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/R/data_utils.R")
 # neighbourhood2016 <- read.csv('data/neighbourhood_profiles_2016.csv',stringsAsFactors = FALSE)
 ```
 
