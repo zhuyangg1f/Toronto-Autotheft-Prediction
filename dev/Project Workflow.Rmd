@@ -97,10 +97,25 @@ new <- raw %>%
 
 -   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.(incomplete)
 
+-   Yang: Clean up git repo, rewrite data cleaning function.
+
 ## Week5 action items:
 
 -   HanYu Qi: Make change to population joining function, create PR and send code review request to Yang. EDA: 1. Time serires plot, is there any seasonality and trend (facet by region, investigating the interaction betwee region and occurrence).  2. Investigate the relationship between time of the day and occurrence 3. Investigate the relationship between day of week and occurrence 4. Investigate the relationship between weather(temperature) and occurrence 5.Investigate the relationship between population structure (total population, young ppl ratio) and occurrence (2 weeks)
 
 -   Wenjie Chen: Review paper "Crime Forecasting Using Data Mining Techiques" for presenting.
 
--   Yang: code review for population joining functions, add function documentation and readme file. 
+-   Yang: code review for population joining functions, add function documentation and readme file.
+
+## Week6 action items:
+-   HanYu Qi: Improve data visualization plot by using Tableau or plotly
+-   Wenjie Chen: Search papers for unnbalanced data for crime rate, find tutorial for neural network.
+-   Yang: review tutorial materials, and EDA.
+
+## Week7 Model Data preprocessing
+
+Expected Results: 
+For each hour/certain time interval(6 hour time interval) create outcome indicator(0/1)
+Create grid for each neighbourhood (create indicator for the neighbourhood boundary)
+split data into training validation and test set by dates (60/20/20) (tidymodels)
+run logistic regression / random forest (package: tidymodels, dplyr, tiyr, purrr, lubridate, caret)
