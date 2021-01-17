@@ -1,6 +1,6 @@
 ---
-title: "Data Cleaning"
-author: "1EE"
+title: "Data Pre-processing"
+author: "Yang"
 date: "10/11/2020"
 output: html_document
 ---
@@ -18,17 +18,27 @@ library(here)
 
 ```{r load data}
 # setwd(here())
-auto_dt <- readRDS("~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/auto_theft_data.rdata")
-raw_neighbor_2016 <- read.csv('~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/neighbourhood-profiles-2016-2011.csv',stringsAsFactors = FALSE)
+raw_auto_dt <- readRDS("~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/auto_theft_data.rdata")
+raw_neighbor_2016_dt <- read.csv('~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/neighbourhood-profiles-2016-2011.csv',stringsAsFactors = FALSE)
 source("~/Desktop/Toronto police case/Toronto-Autotheft-Prediction/R/data_utils.R")
 # neighbourhood2016 <- read.csv('data/neighbourhood_profiles_2016.csv',stringsAsFactors = FALSE)
 ```
 
-```{r}
-clean_neighbor_2016 <- clean_raw_neighbor(raw_neighbor_2016)
-clean_auto_dt <- clean_auto_dt(auto_dt)
-clean_weather_dt <- get_clean_weather()
-auto_weather_dt <- join_auto_weather(clean_auto_dt, clean_weather_dt)
-auto_neighbor_join <- join_auto_neighbor(auto_weather_dt, clean_neighbor_2016)
-write.csv(auto_neighbor_join, "cleaned_auto_weather_neighbor_dt.csv", row.names = FALSE)
+```{r clean data}
+# clean_neighbor_2016 <- clean_raw_neighbor(raw_neighbor_2016)
+# clean_auto_dt <- clean_auto_dt(auto_dt)
+# clean_weather_dt <- get_clean_weather()
+# neighbor_join <- join_auto_neighbor(clean_auto_dt, clean_neighbor_2016)
+# 
+# auto_weather_dt <- join_auto_weather(clean_auto_dt, clean_weather_dt)
+# auto_neighbor_join <- join_auto_neighbor(auto_weather_dt, clean_neighbor_2016)
+# write.csv(auto_neighbor_join, "cleaned_auto_weather_neighbor_dt.csv", row.names = FALSE)
+```
+
+```{r preprocess data for modelling}
+model_data <- prepare_model_data(raw_auto_data = rwa_auto_dt, 
+                                 raw_neighbor_2016 = raw_neighbor_2016_dt,
+                                 data_path = "/Users/yangzhu/Desktop/Toronto police case/Toronto-Autotheft-Prediction/data/",
+                                 save_intermediate = TRUE)
+print(object.size(model_data),units="Gb")
 ```
